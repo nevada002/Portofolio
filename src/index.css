@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom small utilities */
+@layer components {
+    .container-max {
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* simple fade-in animation */
+@layer utilities {
+
+    /* .fade-in { @apply animate-fadeUp; } */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(8px)
+        }
+
+        to {
+            opacity: 1;
+            transform: none
+        }
+    }
+
+    .job-details-hidden {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .28s ease, padding .18s ease
+    }
+
+    .job-open .job-details-hidden {
+        max-height: 1000px;
+        padding-top: .5rem
+    }
+
+    /* slide down for mobile nav overlay */
+    @keyframes slideDown {
+        from {
+            transform: translateY(-8px);
+            opacity: 0
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1
+        }
+    }
+
+    .animate-slideDown {
+        animation: slideDown .22s ease both
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(0);
+            opacity: 1
+        }
+
+        to {
+            transform: translateY(-8px);
+            opacity: 0
+        }
+    }
+
+    .animate-slideUp {
+        animation: slideUp .18s ease both
+    }
+
+    /* backdrop overlay utility for mobile nav */
+    .mobile-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 40
+    }
+
+    .mobile-panel {
+        position: relative;
+        z-index: 50
+    }
+}
+
+/* small form element tweaks */
+input[type="text"],
+input[type="email"],
+textarea {
+    @apply border rounded-md px-3 py-2 bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700
+}
