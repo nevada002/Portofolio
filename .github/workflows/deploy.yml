@@ -4,9 +4,18 @@ on:
   push:
     branches: [ main, master ]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      # Opt into running JavaScript-based actions on Node.js 24 now
+      # This follows GitHub's guidance for the deprecation of Node.js 20 on runners
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
